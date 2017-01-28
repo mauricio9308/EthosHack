@@ -1,0 +1,35 @@
+{
+  "name": "Ehtos",
+  "description": "ethos",
+  "main": "app.js",
+  "authors": [
+    "Ethos Team"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "ethos",
+    "hack"
+  ],
+  "dependencies": {
+    "angular": "~1.5.0",
+    "angular-animate": "~1.5.0",
+    "angular-bootstrap": "~1.2.1",
+    "angular-messages": "~1.5.6",
+    "angular-mocks": "~1.5.0",
+    "angular-resource": "~1.5.0",
+    "angular-ui-router": "~0.2.18",
+    "bootstrap": "~3.3.6",
+    "angular-material": "~1.0.9",
+    "angular-aria": "~1.5.6",
+    "ngstorage": "~0.3.10"
+  },
+  "homepage": "https://github.com/sahat/hackathon-starter",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
