@@ -6,9 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#4DA5F4">
     <meta name="csrf-token">
-    <title>Anticorrupción</title>
+    <title>Expendinte</title>
     <link rel="shortcut icon" href="/favicon.png">
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/lib/angular-material/angular-material.min.css">
+    <link rel="stylesheet" href="/lib/angular-timeline/dist/angular-timeline.css">
+    <link rel="stylesheet" href="/lib/angular-timeline/dist/angular-timeline-animations.css">
+    <link rel="stylesheet" href="/lib/angular-timeline/dist/angular-timeline-bootstrap.css">
 </head>
 <body ng-app="ethos">
 <div class="navbar navbar-default navbar-fixed-top">
@@ -31,12 +35,16 @@
         </div>
     </div>
 </div>
+<br>
+<br>
 
 <!-- Container for the main views of the app -->
-<div class="container" ui-view>
+<div class="container" id="dialog-host" ui-view>
+
+
 </div>
 
-<footer>
+<footer style="position: fixed; z-index: 100;background: lightblue;">
     <div class="container text-center">
         <p class="pull-left">© 2016 Company, Inc. All Rights Reserved</p>
         <ul class="pull-right list-inline">
@@ -45,6 +53,7 @@
         </ul>
     </div>
 </footer>
+
 
 <!-- Angular dependencies for the app -->
 <script src="lib/angular/angular.min.js"></script>
@@ -55,6 +64,7 @@
 <script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
 <script src="lib/ngstorage/ngStorage.min.js"></script>
 <script src="lib/angularfire/dist/angularfire.min.js"></script>
+<script src="lib/angular-timeline/dist/angular-timeline.js"></script>
 
 <script src="/js/lib/jquery-3.1.1.min.js"></script>
 <script src="/js/lib/bootstrap.min.js"></script>
@@ -87,6 +97,7 @@
 <script src="js/controllers/landing/contact.controller.js"></script>
 <script src="js/controllers/landing/landing.page.controller.js"></script>
 <script src="js/controllers/politician/politician.profile.controller.js"></script>
+<script src="js/controllers/politician/search.results.controller.js"></script>
 <script src="js/controllers/user/login.controller.js"></script>
 <script src="js/controllers/user/profile.controller.js"></script>
 <script src="js/controllers/user/signup.controller.js"></script>

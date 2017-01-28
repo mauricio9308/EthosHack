@@ -2,7 +2,7 @@
     /**
      * Created by Mauricio Lara on 1/28/17.
      */
-    var app = angular.module('ethos', ['ui.router', 'ngMaterial', 'ngStorage', 'firebase']);
+    var app = angular.module('ethos', ['ui.router', 'ngMaterial', 'ngStorage', 'firebase', 'angular-timeline']);
 
     app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -31,9 +31,14 @@
 
         /* profile for the politician */
         $stateProvider.state('politician-page', {
-            url: '/politician/:politician',
+            url: '/politician/:politicianId',
             controller: 'PoliticianProfileController',
             templateUrl: 'views/politician/politician.profile.html',
+            isPublic: true
+        }).state('search', {
+            url: '/search?query',
+            controller: 'SearchResultsController',
+            templateUrl: 'views/politician/search_results.html',
             isPublic: true
         });
 
@@ -51,9 +56,11 @@
     });
 
     /* configuration method for the app */
-    app.config(['$httpProvider', function ($httpProvider) {
+    app.config(['$httpProvider', '$qProvider', function ($httpProvider, $qProvider) {
 
         //$httpProvider.interceptors.push('AuthInterceptor');
+
+        $qProvider.errorOnUnhandledRejections(false)
     }]);
 
     /* just for debugging */

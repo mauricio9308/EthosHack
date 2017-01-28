@@ -1,3 +1,70 @@
-<div>
-    Politician Profile
+<!--extends layout-->
+<div class="page-header">
+    <h3>Poítico</h3>
+</div>
+<!-- Main Container for the view  -->
+<div ng-cloak >
+    <!-- Header for the politician -->
+    <md-list-item  class="noright" style="font-size: 40px; padding-bottom: 50px; padding-top: 50px;">
+        <img ng-src="{{ politician.image_url }}" class="md-avatar" style="width: 100px; height: 100px;"/>
+        <p>{{ politician.nombre }}</p>
+    </md-list-item>
+
+    <!-- Main container for the politician data -->
+    <div layout-gt-sm="row" layout="column" style="margin-bottom: 100px;">
+
+        <!-- Container for the History of the politician data -->
+        <div flex-gt-sm="70" flex>
+            <md-toolbar layout="row" class="md-hue-3" style="background-color: lightblue">
+                <div class="md-toolbar-tools">
+                    <span>Historial de Corrupción</span>
+                </div>
+            </md-toolbar>
+            <md-content>
+                <timeline flex style="padding: 10px;" >
+                    <timeline-event ng-repeat="act in corruption_acts" ng-click="onCorruptionActClicked( act.$id )">
+                        <timeline-badge class="info">
+                            <i class="glyphicon glyphicon-check"></i>
+                        </timeline-badge>
+                        <timeline-panel class="info">
+                            <timeline-heading>
+                                <h4>{{act.titulo}}</h4>
+                            </timeline-heading>
+                            <h5>{{act.categoria}}</h5>
+                            <p>{{act.resumen}}</p>
+                            <p>{{act.fecha}}</p>
+                            <a></a>
+                        </timeline-panel>
+                    </timeline-event>
+                </timeline>
+            </md-content>
+        </div>
+
+        <md-divider></md-divider>
+
+        <!-- Container for the related politicians -->
+        <div flex-gt-sm="30" flex>
+            <md-toolbar layout="row" class="md-hue-3" style="background-color: lightblue">
+                <div class="md-toolbar-tools">
+                    <span>Personas Relacionadas</span>
+                </div>
+            </md-toolbar>
+
+            <!-- List for the related politicians -->
+            <md-content>
+                <md-list class="md-dense" flex>
+                    <md-list-item class="md-2-line" ng-repeat="related in politician_related" ng-click="null">
+                        <img ng-src="{{related.image_url}}?{{$index}}" class="md-avatar" alt="{{related.image_url}}" />
+                        <div class="md-list-item-text" layout="column">
+                            <h3>{{ related.nombre }}</h3>
+                            <h4>{{ related.nombre }}</h4>
+                            <p>{{ related.nombre }}</p>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </md-content>
+        </div>
+
+    </div>
+
 </div>
