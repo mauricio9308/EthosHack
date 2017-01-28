@@ -2,7 +2,7 @@
     /**
      * Created by Mauricio Lara on 1/28/17.
      */
-    var app = angular.module('ethos', ['ui.router', 'ngMaterial', 'ngStorage']);
+    var app = angular.module('ethos', ['ui.router', 'ngMaterial', 'ngStorage', 'firebase']);
 
     app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -17,10 +17,23 @@
         });
 
         /* states for the landing without session */
-        $stateProvider.state('/landing', {
+        $stateProvider.state('landing', {
             url: '/landing',
             controller: 'LandingPageController',
             templateUrl: 'views/landing/landing.html',
+            isPublic: true
+        }).state('contact', {
+            url: '/contact',
+            controller: 'ContactController',
+            templateUrl: 'views/landing/contact.html',
+            isPublic: true
+        });
+
+        /* profile for the politician */
+        $stateProvider.state('politician-page', {
+            url: '/politician/:politician',
+            controller: 'PoliticianProfileController',
+            templateUrl: 'views/politician/politician.profile.html',
             isPublic: true
         });
 
@@ -28,7 +41,11 @@
         $stateProvider.state('login', {
             url: '/login',
             controller: 'LoginController',
-            templateUrl: 'views/main/home.html'
+            templateUrl: 'views/user/login.html'
+        }).state('signup', {
+            url: '/signup',
+            controller: 'LoginController',
+            templateUrl: 'views/user/signup.html'
         });
 
     });
@@ -51,6 +68,8 @@
     function run($rootScope, $log, $state, CurrentSessionService) {
         // Listening to the state change
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParms) {
+
+            console.log('go to:' + toState);
 
             if( !toState.isPublic && !CurrentSessionService.isUserLoggedIn()){
                 // We prevent the pass and return to the login page
