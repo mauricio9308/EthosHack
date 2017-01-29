@@ -166,7 +166,6 @@
 
             var references = {};
             for(var i = 0; i < $scope.act.refs.length; i++) {
-                var obj = {};
                 references[ $scope.act.refs[i]['$id'] ] = true;
             }
 
@@ -194,7 +193,7 @@
             // We update the reference data
             firebase.database().ref().update(updates);
 
-            console.log('Finished the reference data')
+            $state.go('curate');
         };
 
         /**
