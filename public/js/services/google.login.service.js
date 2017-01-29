@@ -8,11 +8,11 @@
     angular.module('ethos').factory('GoogleLoginService', GoogleLoginService);
 
     //Declaration of the factory
-    GoogleLoginService.$inject = ['$q', '$localStorage', '$firebaseAuth', '$rootScope'];
+    GoogleLoginService.$inject = ['$q', '$localStorage', '$firebaseAuth', '$rootScope', 'CurrentSessionService', '$state'];
     /**
      * Service in charge of the Google Login Management
      * */
-    function GoogleLoginService($q, $localStorage, $firebaseAuth, $rootScope) {
+    function GoogleLoginService($q, $localStorage, $firebaseAuth, $rootScope, CurrentSessionService, $state) {
         var fbAuth = $firebaseAuth();
 
         // Public API
@@ -27,16 +27,16 @@
         function googleLogin() {
             return fbAuth.$signInWithPopup("google")
                 .then(function (authData) {
-                    $localStorage.accessToken = authData.credential.accessToken;
+                    /* storing the session information  */
+                    CurrentSessionService.setUserInformation(
+                        authData.user.displayName,
+                        authData.user.email,
+                        authData.user.photoURL,
+                        authData.user.uid,
+                        authData.credential.accessToken
+                    );
 
-                    //We store the user information
-                    $localStorage.user = {
-                        displayName: authData.user.displayName,
-                        email: authData.user.email,
-                        photoURL: authData.user.photoURL,
-                        uid: authData.user.uid
-                    };
-
+                    /* we store the reference of the user in the database */
                     var ref = firebase.database().ref('/users/' + $localStorage.user.uid);
                     ref.on("value", function(snapshot) {
                         var values = {};
@@ -44,19 +44,23 @@
                             values = snapshot.val();
                         }
 
-                        values.displayName = $localStorage.user.displayName;
-                        values.email = $localStorage.user.email;
-                        values.photoURL = $localStorage.user.photoURL;
+                        values.displayName = authData.user.displayName;
+                        values.email = authData.user.email;
+                        values.photoURL = authData.user.photoURL;
 
-                        firebase.database().ref("/users/" + $localStorage.user.uid).set(values);
+                        // We save the values in firebase
+                        firebase.database().ref("/users/" + authData.user.uid).set(values);
 
                         /* broadcast the user update */
-                        $rootScope.$emit('UserAuthenticationChanged');
+                        $rootScope.$emit('UserAuthenticationChanged', true);
+
+                        // We emit the state change
+                        $state.go('landing');
+
 
                     }, function (errorObject) {
                         console.log("FATAL: The read failed: " + errorObject.code);
                     });
-
                     return authData;
                 }).catch(function (error) {
                     console.log("Authentication failed:", error);

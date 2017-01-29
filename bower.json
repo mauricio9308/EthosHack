@@ -24,7 +24,8 @@
     "ngstorage": "~0.3.10",
     "firebase": "^3.0.5",
     "angularfire": "~2.3.0",
-    "angular-timeline": "~1.7.0"
+    "angular-timeline": "~1.7.0",
+    "angular-carousel": "~1.0.1"
   },
   "homepage": "https://github.com/sahat/hackathon-starter",
   "moduleType": [],

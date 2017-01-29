@@ -2,7 +2,7 @@
     /**
      * Created by Mauricio Lara on 1/28/17.
      */
-    var app = angular.module('ethos', ['ui.router', 'ngMaterial', 'ngStorage', 'firebase', 'angular-timeline']);
+    var app = angular.module('ethos', ['ui.router', 'ngMaterial', 'ngStorage', 'firebase', 'angular-timeline', 'angular-carousel']);
 
     app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -29,6 +29,14 @@
             isPublic: true
         });
 
+        /* page for the curate process */
+        $stateProvider.state('curate', {
+            url: '/curate',
+            controller: 'CurateController',
+            templateUrl: 'views/curate/curate.html',
+            isPublic: false
+        });
+
         /* profile for the politician */
         $stateProvider.state('politician-page', {
             url: '/politician/:politicianId',
@@ -46,11 +54,13 @@
         $stateProvider.state('login', {
             url: '/login',
             controller: 'LoginController',
-            templateUrl: 'views/user/login.html'
+            templateUrl: 'views/user/login.html',
+            isPublic: true
         }).state('signup', {
             url: '/signup',
             controller: 'LoginController',
-            templateUrl: 'views/user/signup.html'
+            templateUrl: 'views/user/signup.html',
+            isPublic: true
         });
 
     });
@@ -80,7 +90,7 @@
 
             if( !toState.isPublic && !CurrentSessionService.isUserLoggedIn()){
                 // We prevent the pass and return to the login page
-
+                $state.go('login');
             }
 
         });

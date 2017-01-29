@@ -1,0 +1,58 @@
+<!--extends layout-->
+<div class="page-header">
+    <h3>Curate</h3>
+</div>
+<div>
+
+    <ul rn-carousel class="image" style="width: 100%; height: 500px;">
+        <li  ng-repeat="act in corruption_acts">
+            <md-card style="width: 700px; height: 400px;
+
+             background-color: #29B1B0; color: white; margin: 0 auto;">
+                <div layout="column">
+                    <!-- Container for the items -->
+                    <div layout="row" style="padding: 25px;">
+                        <h4>Categoría</h4>
+                        <div flex></div>
+                        <h4>No publicada</h4>
+                    </div>
+
+                    <!-- Container for act information -->
+                    <h1>Título {{ act.titulo }}</h1>
+                    <p>Descripción: {{ act.resumen }}</p>
+
+                    <!-- Container for references for the act -->
+                    <h4>Referencias de la denuncia</h4>
+                    <div layout="row">
+                        <ul flex="70">
+                            <li ng-repeat="ref in act.refs">
+                                <a ng-href="{{ ref.url }}">{{ ref.titulo }}</a></li>
+                        </ul>
+                        <div flex></div>
+                        <md-button class="md-raised" ng-click="editAct( act )">
+                            Editar
+                        </md-button>
+                    </div>
+
+                    <!-- Container for the vote of the information -->
+                    <div style="background-color: #575757">
+                        <p>¿Esta información es confiable?</p>
+                        <div layout="row">
+                            <md-button class="md-raised" ng-click="actVoteYes( act )">
+                                Ño
+                            </md-button>
+                            <md-button class="md-raised" ng-click="actVoteNo( act )">
+                                Chi
+                            </md-button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </md-card>
+        </li>
+    </ul>
+
+</div>

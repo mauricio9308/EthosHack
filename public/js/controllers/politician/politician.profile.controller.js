@@ -6,19 +6,28 @@
     angular.module('ethos').controller('PoliticianProfileController', PoliticianProfileController);
 
     // Inject
-    PoliticianProfileController.$inject = ['$scope', '$stateParams', '$firebaseObject', '$firebaseArray'];
+    PoliticianProfileController.$inject = ['$scope', '$stateParams', '$firebaseObject', '$firebaseArray', '$state'];
 
     /**
      * Controller for the home view of the application
      * */
-    function PoliticianProfileController($scope, $stateParams, $firebaseObject, $firebaseArray) {
+    function PoliticianProfileController($scope, $stateParams, $firebaseObject, $firebaseArray, $state) {
 
         /**
          * We open a dialog for the information of the corruption act
          * */
         $scope.onCorruptionActClicked = function( id ){
 
-        }
+        };
+
+        /**
+         * Clicked for the information related
+         * */
+        $scope.onRelatedClicked = function( related ){
+            $state.go('politician-page', {
+                politicianId: related['$id']
+            });
+        };
 
         /**
          * Function for the information fetch from fire-base
