@@ -1,0 +1,76 @@
+<!--extends layout-->
+<div class="page-header">
+    <h3>Reportar acto</h3>
+</div>
+<div>
+    <!-- Input for the new act report -->
+    <md-content layout="column" layout-padding style="padding-bottom: 100px;">
+        <!-- Container for the title -->
+        <md-input-container>
+            <label>Título</label>
+            <input ng-model="act.title" required>
+        </md-input-container>
+
+        <!-- Container for the resume -->
+        <md-input-container>
+            <label>Resumen</label>
+            <input ng-model="act.resumen" required>
+        </md-input-container>
+
+        <!-- Container for the date -->
+        <h4>Fecha</h4>
+        <md-datepicker ng-model="act.fecha" md-placeholder="Fecha" required></md-datepicker>
+
+        <!-- Container for the references -->
+        <h4>Referencias de la denuncia</h4>
+        <div layout="column" style="min-height: 150px;
+             background-color: #29B1B0; color: white; padding-left: 25px; padding-right: 25px;">
+            <md-list-item ng-repeat="ref in act.refs" >
+                <p>{{ ref.titulo }}</p>
+                <div flex></div>
+                <md-button ng-click="removeReference( $index )">Eliminar</md-button>
+            </md-list-item>
+            <p ng-if="!act.refs || act.refs.length == 0" style="margin: 0 auto;">
+                Agrega una referencia a la denuncia
+            </p>
+        </div>
+        <div layout="row">
+            <div flex></div>
+            <md-button style="width: 200px; margin-top: 10px;" class="md-raised" ng-click="createReference()">
+                Crear
+            </md-button>
+            <md-button style="width: 200px; margin-top: 10px;" class="md-raised" ng-click="selectReference()">
+                Seleccionar
+            </md-button>
+        </div>
+
+        <!-- Container for the links reference -->
+        <h4>Complices de la denuncia</h4>
+        <div layout="column" style="min-height: 150px;
+             background-color: #29B1B0; color: white; padding-left: 25px; padding-right: 25px;">
+            <md-list-item ng-repeat="complice in act.complices"  class="noright">
+                <p>{{ complice.nombre }}</p>
+                <div flex></div>
+                <md-button ng-click="removeComplice( $index )">Eliminar</md-button>
+            </md-list-item>
+
+            <p ng-if="!act.complices || act.complices.length == 0" style="margin: 0 auto;">
+                Agrega un complice a la denuncia
+            </p>
+        </div>
+        <div layout="row">
+            <div flex></div>
+            <md-button style="width: 200px; margin-top: 10px;" class="md-raised" ng-click="selectPolitician()">
+                Seleccionar
+            </md-button>
+        </div>
+
+        <!-- Create the act -->
+        <br>
+        <br>
+        <md-button ng-click="createAct()" class="md-raised" md-warn>Crear</md-button>
+
+    </md-content>
+
+
+</div>

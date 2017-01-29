@@ -35,6 +35,11 @@
             controller: 'CurateController',
             templateUrl: 'views/curate/curate.html',
             isPublic: false
+        }).state('create_act',{
+            url: '/act/create',
+            controller: 'CurateCreateController',
+            templateUrl: 'views/curate/curate.new.html',
+            isPublic: false
         });
 
         /* profile for the politician */
@@ -89,6 +94,9 @@
             console.log('go to:' + toState);
 
             if( !toState.isPublic && !CurrentSessionService.isUserLoggedIn()){
+                // We cancel the event propagation
+                event.preventDefault();
+
                 // We prevent the pass and return to the login page
                 $state.go('login');
             }

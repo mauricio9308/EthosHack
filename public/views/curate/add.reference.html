@@ -1,0 +1,55 @@
+<md-dialog aria-label="Add Reference" style="min-width: 800px;">
+    <form ng-cloak layout="column">
+        <md-toolbar style="background-color: #29B1B0">
+            <div class="md-toolbar-tools">
+                <h2>Registrar Referencia</h2>
+                <span flex></span>
+                <md-button ng-click="cancel()">
+                    Cerrar
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <!-- Create -->
+        <md-dialog-content layout="column" layout-padding style="padding: 20px;">
+            <!-- Container for the title -->
+            <md-input-container>
+                <label>Título</label>
+                <input ng-model="ref.title" required>
+            </md-input-container>
+
+            <!-- Container for the resume -->
+            <md-input-container>
+                <label>URL</label>
+                <input ng-model="ref.url" required>
+            </md-input-container>
+
+            <!-- Container for the date -->
+            <h4>Fecha</h4>
+            <md-datepicker ng-model="ref.fecha" md-placeholder="Fecha" required></md-datepicker>
+
+            <!-- Fuente -->
+            <br>
+            <md-input-container>
+                <label>Fuente</label>
+                <md-select ng-model="fuente">
+                    <md-option><em>Selecciona la fuente</em></md-option>
+                    <md-option ng-repeat="source in sources" ng-value="source['$id']" ng-disabled="$index === 1">
+                        {{source.nombre}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="cancel()">
+                Cancelar
+            </md-button>
+            <md-button ng-click="answer()">
+                Crear
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

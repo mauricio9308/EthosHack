@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#4DA5F4">
     <meta name="csrf-token">
-    <title>Expendinte</title>
+    <title>Zapis</title>
     <link rel="shortcut icon" href="/favicon.png">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/lib/angular-material/angular-material.min.css">
@@ -16,13 +16,13 @@
     <link rel="stylesheet" href="/lib/angular-carousel/dist/angular-carousel.min.css">
 </head>
 <body ng-app="ethos">
-<div class="navbar navbar-default navbar-fixed-top">
+<div class="navbar navbar-default navbar-fixed-top" style="background-color: #29B1B0; color: white">
     <div class="container" ng-controller="HeaderController">
         <div class="navbar-header">
             <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span
                     class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
                     class="icon-bar"></span></button>
-            <a href="/" class="navbar-brand"><i class="fa fa-cube"></i>Expediente</a>
+            <a href="/" class="navbar-brand"><i class="fa fa-cube"></i>Zapis</a>
         </div>
         <div class="collapse navbar-collapse" ng-cloak>
             <ul class="nav navbar-nav">
@@ -34,6 +34,7 @@
                 <li><a ui-sref="signup">Crear Cuenta</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" ng-show="isLoggedIn">
+                <li><a ui-sref="create_act">Enviar Acto</a></li>
                 <li><a ui-sref="curate">Curar</a></li>
                 <li><a ng-click="closeSession()">Cerrar Sesión</a></li>
                 <li>{{ user.displayName }}</li>
@@ -50,12 +51,11 @@
 
 </div>
 
-<footer style="position: fixed; z-index: 100;background: lightblue;">
+<footer style="position: fixed; z-index: 100;background: #29B1B0;">
     <div class="container text-center">
-        <p class="pull-left">© 2016 Company, Inc. All Rights Reserved</p>
+        <p class="pull-left">© 2016 Zapi, Inc. Todos los derechos reservados</p>
         <ul class="pull-right list-inline">
-            <li><a href="https://github.com/sahat/hackathon-starter">GitHub Project</a></li>
-            <li><a href="https://github.com/sahat/hackathon-starter/issues">Issues</a></li>
+            <li><a href="">GitHub Project</a></li>
         </ul>
     </div>
 </footer>
@@ -92,7 +92,7 @@
 </script>
 
 
-<!-- Angular App -->s
+<!-- Angular App -->
 <script src="js/app.js"></script>
 
 <!-- Angular Services -->
@@ -103,6 +103,10 @@
 <script src="js/controllers/home/home.controller.js"></script>
 <script src="js/controllers/home/header.controller.js"></script>
 <script src="js/controllers/curate/curate.controller.js"></script>
+<script src="js/controllers/curate/create.curate.controller.js"></script>
+<script src="js/controllers/curate/add.reference.controller.js"></script>
+<script src="js/controllers/curate/select.reference.controller.js"></script>
+<script src="js/controllers/curate/select.politician.controller.js"></script>
 <script src="js/controllers/landing/contact.controller.js"></script>
 <script src="js/controllers/landing/landing.page.controller.js"></script>
 <script src="js/controllers/politician/politician.profile.controller.js"></script>
