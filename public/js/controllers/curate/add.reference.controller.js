@@ -21,11 +21,31 @@
          * Closes the dialog
          * */
         $scope.create = function() {
-            // Definition of the item and save to firebase
+            // Creating the reference
+            var referenceData = {
+                acto: '',
+                fecha: $scope.ref.fecha,
+                fuente: $scope.fuente,
+                titulo: $scope.ref.title,
+                url: $scope.ref.url,
+                verificado: false
+            };
 
+            /* creating the key for the new reference information */
+            var newReference = firebase.database().ref().child('referencia').push().key;
 
+            // Write the new post's data simultaneously in the posts list and the user's post list.
+            var updates = {};
+            updates['/referencia/' + newReference] = referenceData;
 
-            $mdDialog.hide();
+            // We update the reference data
+            firebase.database().ref().update(updates);
+
+            // Setting the reference data
+            referenceData['$id'] = newReference;
+
+            // We close the dialog for the reference
+            $mdDialog.hide( referenceData );
         };
 
         /**

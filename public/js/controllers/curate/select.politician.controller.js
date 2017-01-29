@@ -17,6 +17,9 @@
          * Closes the dialog
          * */
         $scope.onSelectPolitician = function( politician ) {
+            console.log('select');
+            console.log( politician );
+
             // We select one item to the reference
             $mdDialog.hide( politician );
         };

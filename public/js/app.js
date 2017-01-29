@@ -40,6 +40,11 @@
             controller: 'CurateCreateController',
             templateUrl: 'views/curate/curate.new.html',
             isPublic: false
+        }).state('act-edit', {
+            url: '/act/edit/:actaId',
+            controller: 'CurateEditController',
+            templateUrl: 'views/curate/curate.edit.html',
+            isPublic: false
         });
 
         /* profile for the politician */

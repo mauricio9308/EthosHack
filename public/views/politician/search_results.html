@@ -6,7 +6,7 @@
 
     <!-- List for the related politicians -->
     <md-content flex>
-        <md-list class="md-dense" flex>
+        <md-list class="md-dense" flex ng-show="results">
             <md-list-item class="md-2-line" ng-repeat="result in results" ng-click="onResultClicked( result )">
                 <img src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" class="md-avatar" alt="{{result.image_url}}" />
                 <div class="md-list-item-text" layout="column">
@@ -15,5 +15,6 @@
                 </div>
             </md-list-item>
         </md-list>
+        <h3 ng-show="noData">Sin Resultados</h3>
     </md-content>
 </div>

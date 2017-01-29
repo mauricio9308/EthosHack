@@ -28,7 +28,7 @@
             <md-list-item ng-repeat="ref in act.refs" >
                 <p>{{ ref.titulo }}</p>
                 <div flex></div>
-                <md-button ng-click="removeReference( $index )">Eliminar</md-button>
+                <md-button ng-click="removeReference( ref )">Eliminar</md-button>
             </md-list-item>
             <p ng-if="!act.refs || act.refs.length == 0" style="margin: 0 auto;">
                 Agrega una referencia a la denuncia
@@ -51,7 +51,7 @@
             <md-list-item ng-repeat="complice in act.complices"  class="noright">
                 <p>{{ complice.nombre }}</p>
                 <div flex></div>
-                <md-button ng-click="removeComplice( $index )">Eliminar</md-button>
+                <md-button ng-click="removeComplice( complice )">Eliminar</md-button>
             </md-list-item>
 
             <p ng-if="!act.complices || act.complices.length == 0" style="margin: 0 auto;">
