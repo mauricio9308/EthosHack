@@ -11,19 +11,19 @@
              background-color: #29B1B0; color: white; margin: 0 auto;">
                 <div layout="column">
                     <!-- Container for the items -->
-                    <div layout="row" style="padding: 25px;">
-                        <h4>Categoría</h4>
-                        <div flex></div>
-                        <h4>No publicada</h4>
-                    </div>
+                    <!--<div layout="row" style="padding: 25px;">-->
+                        <!--<h4>Categoría</h4>-->
+                        <!--<div flex></div>-->
+                        <!--<h4>No publicada</h4>-->
+                    <!--</div>-->
 
                     <!-- Container for act information -->
-                    <h1>Título {{ act.titulo }}</h1>
-                    <p>Descripción: {{ act.resumen }}</p>
+                    <h1 style="padding-left: 25px; padding-right: 25px;">Título {{ act.titulo }}</h1>
+                    <p style="padding-left: 25px; padding-right: 25px;">Descripción: {{ act.resumen }}</p>
 
                     <!-- Container for references for the act -->
-                    <h4>Referencias de la denuncia</h4>
-                    <div layout="row">
+                    <h4 style="padding-left: 25px; padding-right: 25px;">Referencias de la denuncia</h4>
+                    <div layout="row" style="padding-left: 25px; padding-right: 25px;">
                         <ul flex="70">
                             <li ng-repeat="ref in act.refs">
                                 <a ng-href="{{ ref.url }}">{{ ref.titulo }}</a></li>
@@ -35,13 +35,13 @@
                     </div>
 
                     <!-- Container for the vote of the information -->
-                    <div style="background-color: #575757">
+                    <div style="background-color: #575757; padding: 25px; margin-top: 75px;" >
                         <p>¿Esta información es confiable?</p>
-                        <div layout="row">
-                            <md-button class="md-raised" ng-click="actVoteYes( act )">
+                        <div layout="row" style="width: 200px; margin: 0 auto;">
+                            <md-button class="md-raised" ng-click="actVoteNo( act )" style="background: red; color: white">
                                 Ño
                             </md-button>
-                            <md-button class="md-raised" ng-click="actVoteNo( act )">
+                            <md-button class="md-raised" ng-click="actVoteYes( act )" style="background: green; color: white">
                                 Chi
                             </md-button>
 

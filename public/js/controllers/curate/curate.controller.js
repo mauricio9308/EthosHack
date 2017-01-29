@@ -27,6 +27,9 @@
          * Callback for the vote of the yes of an act
          * */
         $scope.actVoteYes = function( act ){
+            console.log('act yes....');
+            console.log( act );
+
             var ref = firebase.database().ref('/acto/' + act['$id']);
             ref.on("value", function(snapshot) {
                 var values = {};
@@ -47,6 +50,9 @@
          * Callback for the vote of the no of an act
          * */
         $scope.actVoteNo = function( act ){
+            console.log('actno....');
+            console.log( act );
+
             var ref = firebase.database().ref('/acto/' + act['$id']);
             ref.on("value", function(snapshot) {
                 var values = {};
