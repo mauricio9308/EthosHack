@@ -1,21 +1,39 @@
 <!--extends layout-->
-<br>
-<h1>¡Bienvenido a Expendiente!</h1>
-<p class="lead">El buscador libre de las artimañas de los políticos mexicanos...</p>
-<hr/>
-<div class="row">
-    <div class="">
-        <h2>Buscador</h2>
+<!--<br>-->
+<!--<h1>¡Bienvenido a Expendiente!</h1>-->
+<!--<p class="lead">El buscador libre de las artimañas de los políticos mexicanos...</p>-->
+<!--<hr/>-->
+<!--<div class="row">-->
+<!--<div class="">-->
+<!--<h2>Buscador</h2>-->
 
-        <md-content layout="column" layout-padding>
-            <md-input-container style="width: 100%">
-                <label>Ingresa el nombre del político</label>
-                <input type="text" ng-model="query">
-            </md-input-container>
+<!--<md-content layout="column" layout-padding>-->
+<!--<md-input-container style="width: 100%">-->
+<!--<label>Ingresa el nombre del político</label>-->
+<!--<input type="text" ng-model="query">-->
+<!--</md-input-container>-->
 
-            <br>
-            <md-button ng-click="search()">Search</md-button>
-        </md-content>
-    </div>
+<!--<br>-->
+<!--<md-button ng-click="search()">Search</md-button>-->
+<!--</md-content>-->
+<!--</div>-->
 
+
+<!--</div>-->
+
+<div class="inner cover" style="height: 100vh !important;margin-left: -300px;margin-right: -300px;">
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6" style="margin-top: 100px;">
+            <p class="lead"><img id="logo" src="logoblanco.png"></p>
+            <p class="lead">Busca el expediente de corrupción de un político o personaje público</p>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Ej. Javier Duarte" ng-model="query">
+                        <span class="input-group-btn">
+                          <button class="btn cover-btn-default" type="button" ng-click="search()">Buscar</button>
+                        </span>
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
 </div>

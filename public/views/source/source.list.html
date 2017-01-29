@@ -1,0 +1,18 @@
+<div class="page-header" layout="row">
+    <h3>Fuentes</h3>
+    <div flex></div>
+    <md-button ng-click="createSource()" ng-if="isUserLoggedIn">Crear</md-button>
+</div>
+<div ng-cloak >
+    <!-- List for the sources in the platform  -->
+    <md-content flex>
+        <md-list class="md-dense" flex ng-show="sources">
+            <md-list-item ng-repeat="source in sources" ng-click="onSourceClicked( $event, source )" class="noright">
+                <p>{{ source.nombre + '                                    Credibilidad: ' +  source.credibilidad}}</p>
+                <md-button class="md-secondary" ng-click="editSource( $event, source)" ng-if="isUserLoggedIn">Editar</md-button>
+            </md-list-item>
+
+        </md-list>
+        <h3 ng-show="noData">Sin Resultados</h3>
+    </md-content>
+</div>

@@ -1,0 +1,39 @@
+<!--extends layout-->
+<md-dialog aria-label="Add Reference" style="min-width: 800px;">
+    <form ng-cloak layout="column">
+        <md-toolbar style="background-color: #29B1B0">
+            <div class="md-toolbar-tools">
+                <h2>Editar fuente de noticias</h2>
+                <span flex></span>
+                <md-button ng-click="cancel()">
+                    Cerrar
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <!-- Create -->
+        <md-dialog-content layout="column" layout-padding style="padding: 20px;">
+            <!-- Container for the name -->
+            <md-input-container>
+                <label>Nombre</label>
+                <input ng-model="source.nombre" required>
+            </md-input-container>
+
+            <!-- Container for the url -->
+            <md-input-container>
+                <label>URL</label>
+                <input ng-model="source.url" required>
+            </md-input-container>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="cancel()">
+                Cancelar
+            </md-button>
+            <md-button ng-click="edit()">
+                Editar
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

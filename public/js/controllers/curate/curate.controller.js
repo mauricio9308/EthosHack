@@ -13,15 +13,16 @@
      * */
     function CurateController($scope, $firebaseArray, $state) {
 
+        $scope.dataLoaded = false;
+
         /**
          * We go to the act edition view
         * */
         $scope.editAct = function( act ){
             $state.go('act-edit', {
-                actId: act['$id']
+                actaId: act['$id']
             })
         };
-
 
         /**
          * Callback for the vote of the yes of an act
@@ -47,20 +48,17 @@
          * Callback for the vote of the no of an act
          * */
         $scope.actVoteNo = function( act ){
-            var ref = firebase.database().ref('/acto/' + act['$id']);
-            ref.on("value", function(snapshot) {
-                var values = {};
-                if (snapshot.val() != null) {
-                    values = snapshot.val();
+            // We remove the reference from the array
+            var index;
+            for(var i = 0; i < $scope.corruption_acts.length; i++) {
+                if ($scope.corruption_acts[i]['$id'] == act['$id']) {
+                    index = i;
+                    break;
                 }
+            }
 
-                values.verificado = false;
-
-                // We save the values in fire-base
-                firebase.database().ref("/acto/" + act['$id']).set(values);
-            }, function (errorObject) {
-                console.log("FATAL: The update of the act failed: " + errorObject.code);
-            });
+            // We remove the item from the list
+            $scope.corruption_acts.splice( index );
         };
 
         /**
@@ -70,11 +68,13 @@
             var firebaseDB = firebase.database();
 
             // Getting the reference of the acts
-            var actsQuery = firebaseDB.ref('acto').orderByChild('verificado').equalTo( true );
+            var actsQuery = firebaseDB.ref('acto').orderByChild('verificado').equalTo( false );
             $scope.corruption_acts = $firebaseArray( actsQuery );
 
             // We obtain the references for the corruption acts
             $scope.corruption_acts.$loaded(function( data ){
+                $scope.dataLoaded = true;
+
                 // For each of the items we update the references of the resource
                 if( data.length > 0 ){
                     for( var i = 0, total = data.length; i < total; i ++ ){

@@ -26,9 +26,6 @@
                 return;
             }
 
-            console.log('search query : ' + $scope.query );
-
-
             /* we go to the next search results */
             $state.go('search', {
                 query: $scope.query

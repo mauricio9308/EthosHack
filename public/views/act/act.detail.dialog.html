@@ -1,0 +1,65 @@
+<!--extends layout-->
+<md-dialog aria-label="Add Reference" style="min-width: 800px;">
+    <form ng-cloak layout="column">
+        <md-toolbar style="background-color: #29B1B0">
+            <div class="md-toolbar-tools">
+                <h2>Acto de Corrupción</h2>
+                <span flex></span>
+                <md-button ng-click="cancel()">
+                    Cerrar
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <!-- Create -->
+        <md-dialog-content layout="column" layout-padding style="padding: 20px;">
+            <!-- Container for the title -->
+            <h3>Titúlo</h3>
+            <p>{{ act.titulo }}</p>
+
+            <!-- Container for the title -->
+            <h3>Resumen</h3>
+            <p>{{ act.resumen }}</p>
+
+            <!-- Container for the date -->
+            <h3>Fecha</h3>
+            <p>{{ act.fecha | date : 'dd/M/yyyy' }}</p>
+
+            <h3>Verificado</h3>
+            <p>{{ act.verificado ? 'Si' : 'No' }}</p>
+
+            <!-- Container for the references -->
+            <h4>Referencias de la denuncia</h4>
+            <div layout="column" style="min-height: 150px;
+             background-color: #29B1B0; color: white; padding-left: 25px; padding-right: 25px;">
+                <ul>
+                    <li ng-repeat="ref in act.refs">
+                        <a ng-href="{{ ref.url }}">{{ ref.titulo }}</a>
+                        <br>
+                        <a ng-click="viewSource( $event, ref.fuente )">Ver Fuente</a>
+                    </li>
+                </ul>
+                <p ng-if="!act.refs || act.refs.length == 0" style="margin: 0 auto;">
+                    Obteniendo referencias
+                </p>
+            </div>
+
+            <!-- Container for the links reference -->
+            <h4>Complices de la denuncia</h4>
+            <div layout="column" style="min-height: 150px;
+             background-color: #29B1B0; color: white; padding-left: 25px; padding-right: 25px;">
+                <md-list-item class="md-2-line" ng-repeat="complice in act.complices" ng-click="onPoliticianClicked( complice )">
+                    <img src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" class="md-avatar" alt="{{complice.image_url}}" />
+                    <div class="md-list-item-text" layout="column">
+                        <h3>{{ complice.nombre }}</h3>
+                        <h4>Político</h4>
+                    </div>
+                </md-list-item>
+                <p ng-if="!act.complices || act.complices.length == 0" style="margin: 0 auto;">
+                    Obteniendo complices
+                </p>
+            </div>
+
+        </md-dialog-content>
+    </form>
+</md-dialog>

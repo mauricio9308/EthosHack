@@ -35,6 +35,16 @@
             controller: 'CurateController',
             templateUrl: 'views/curate/curate.html',
             isPublic: false
+        }).state('create_act',{
+            url: '/act/create',
+            controller: 'CurateCreateController',
+            templateUrl: 'views/curate/curate.new.html',
+            isPublic: false
+        }).state('act-edit', {
+            url: '/act/edit/:actaId',
+            controller: 'CurateEditController',
+            templateUrl: 'views/curate/curate.edit.html',
+            isPublic: false
         });
 
         /* profile for the politician */
@@ -63,6 +73,27 @@
             isPublic: true
         });
 
+        /* states for the sources */
+        $stateProvider.state('source-page', {
+            url: '/source/:sourceId',
+            controller: 'SourceDetailController',
+            templateUrl: 'views/source/source.detail.html',
+            isPublic: true
+        }).state('sources', {
+            url: '/source',
+            controller: 'SourceListController',
+            templateUrl: 'views/source/source.list.html',
+            isPublic: true
+        });
+
+
+        /* states for the politicians */
+        $stateProvider.state('politicians', {
+            url: '/politic',
+            controller: 'PoliticsListController',
+            templateUrl: 'views/politician/politician.list.html',
+            isPublic: false
+        })
     });
 
     /* configuration method for the app */
@@ -89,6 +120,9 @@
             console.log('go to:' + toState);
 
             if( !toState.isPublic && !CurrentSessionService.isUserLoggedIn()){
+                // We cancel the event propagation
+                event.preventDefault();
+
                 // We prevent the pass and return to the login page
                 $state.go('login');
             }

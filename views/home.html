@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#4DA5F4">
     <meta name="csrf-token">
-    <title>Expendinte</title>
+    <title>Zapis</title>
     <link rel="shortcut icon" href="/favicon.png">
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/cover.css">
     <link rel="stylesheet" href="/lib/angular-material/angular-material.min.css">
     <link rel="stylesheet" href="/lib/angular-timeline/dist/angular-timeline.css">
     <link rel="stylesheet" href="/lib/angular-timeline/dist/angular-timeline-animations.css">
@@ -16,26 +17,29 @@
     <link rel="stylesheet" href="/lib/angular-carousel/dist/angular-carousel.min.css">
 </head>
 <body ng-app="ethos">
-<div class="navbar navbar-default navbar-fixed-top">
-    <div class="container" ng-controller="HeaderController">
-        <div class="navbar-header">
+<div class="navbar navbar-default navbar-fixed-top" style="background-color: #29B1B0; color: white">
+    <div class="container" ng-controller="HeaderController" style="color: #FFFFFF">
+        <div class="navbar-header" style="color: #FFFFFF">
             <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span
                     class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
                     class="icon-bar"></span></button>
-            <a href="/" class="navbar-brand"><i class="fa fa-cube"></i>Expediente</a>
+            <a ui-sref="/" class="navbar-brand" style="color: #FFFFFF"><img src="logo.webp" style="width: 75px;"></a>
         </div>
-        <div class="collapse navbar-collapse" ng-cloak>
+        <div class="collapse navbar-collapse" ng-cloak style="color: #FFFFFF">
             <ul class="nav navbar-nav">
-                <li><a ui-sref="landing">Home</a></li>
-                <li><a ui-sref="contact">Contacto</a></li>
+                <li><a ui-sref="landing" style="color: #FFFFFF">Home</a></li>
+                <li><a ui-sref="contact" style="color: #FFFFFF">Contacto</a></li>
+                <li><a ui-sref="sources" style="color: #FFFFFF">Fuentes</a></li>
+                <li><a ui-sref="politicians" style="color: #FFFFFF">Políticos</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" ng-hide="isLoggedIn">
-                <li><a ui-sref="login">Login</a></li>
-                <li><a ui-sref="signup">Crear Cuenta</a></li>
+                <li><a ui-sref="login" style="color: #FFFFFF">Login</a></li>
+                <li><a ui-sref="signup" style="color: #FFFFFF">Crear Cuenta</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" ng-show="isLoggedIn">
-                <li><a ui-sref="curate">Curar</a></li>
-                <li><a ng-click="closeSession()">Cerrar Sesión</a></li>
+                <li><a ui-sref="create_act" style="color: #FFFFFF">Enviar Acto</a></li>
+                <li><a ui-sref="curate" style="color: #FFFFFF">Curar</a></li>
+                <li><a ng-click="closeSession()" style="color: #FFFFFF">Cerrar Sesión</a></li>
                 <li>{{ user.displayName }}</li>
             </ul>
         </div>
@@ -46,16 +50,13 @@
 
 <!-- Container for the main views of the app -->
 <div class="container" id="dialog-host" ui-view>
-
-
 </div>
 
-<footer style="position: fixed; z-index: 100;background: lightblue;">
-    <div class="container text-center">
-        <p class="pull-left">© 2016 Company, Inc. All Rights Reserved</p>
+<footer style="position: fixed; z-index: 100;background: #29B1B0;">
+    <div class="container text-center" style="color: white;">
+        <p class="pull-left">© 2016 Zapi, Inc. Todos los derechos reservados</p>
         <ul class="pull-right list-inline">
-            <li><a href="https://github.com/sahat/hackathon-starter">GitHub Project</a></li>
-            <li><a href="https://github.com/sahat/hackathon-starter/issues">Issues</a></li>
+            <li><a href="">GitHub Project</a></li>
         </ul>
     </div>
 </footer>
@@ -92,21 +93,33 @@
 </script>
 
 
-<!-- Angular App -->s
+<!-- Angular App -->
 <script src="js/app.js"></script>
 
 <!-- Angular Services -->
 <script src="js/services/current.session.service.js"></script>
 <script src="js/services/google.login.service.js"></script>
+<script src="js/services/search.service.js"></script>
 
 <!-- Angular controller -->
 <script src="js/controllers/home/home.controller.js"></script>
 <script src="js/controllers/home/header.controller.js"></script>
+<script src="js/controllers/act/act.detail.controller.js"></script>
+<script src="js/controllers/sources/source.detail.controller.js"></script>
+<script src="js/controllers/sources/source.list.controller.js"></script>
+<script src="js/controllers/sources/source.edit.controller.js"></script>
+<script src="js/controllers/sources/source.create.controller.js"></script>
 <script src="js/controllers/curate/curate.controller.js"></script>
+<script src="js/controllers/curate/curate.edit.controller.js"></script>
+<script src="js/controllers/curate/create.curate.controller.js"></script>
+<script src="js/controllers/curate/add.reference.controller.js"></script>
+<script src="js/controllers/curate/select.reference.controller.js"></script>
+<script src="js/controllers/curate/select.politician.controller.js"></script>
 <script src="js/controllers/landing/contact.controller.js"></script>
 <script src="js/controllers/landing/landing.page.controller.js"></script>
 <script src="js/controllers/politician/politician.profile.controller.js"></script>
 <script src="js/controllers/politician/search.results.controller.js"></script>
+<script src="js/controllers/politics/politics.list.controller.js"></script>
 <script src="js/controllers/user/login.controller.js"></script>
 <script src="js/controllers/user/profile.controller.js"></script>
 <script src="js/controllers/user/signup.controller.js"></script>

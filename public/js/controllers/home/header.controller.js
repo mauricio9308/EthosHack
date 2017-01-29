@@ -6,12 +6,12 @@
     angular.module('ethos').controller('HeaderController', HeaderController);
 
     // Injecting the services
-    HeaderController.$inject = [ '$scope', '$rootScope', 'CurrentSessionService'];
+    HeaderController.$inject = [ '$scope', '$rootScope', 'CurrentSessionService', '$state'];
 
     /**
      * Controller for the home view of the application
      * */
-    function HeaderController( $scope, $rootScope, CurrentSessionService ){
+    function HeaderController( $scope, $rootScope, CurrentSessionService, $state ){
 
         // Setting the logged
         $scope.isLoggedIn = CurrentSessionService.isUserLoggedIn();
@@ -26,6 +26,9 @@
         $scope.closeSession = function(){
             // We close the session
             CurrentSessionService.closeSession();
+
+            // We go to the landing page
+            $state.go('landing');
         };
 
         /* broadcast the user update */
