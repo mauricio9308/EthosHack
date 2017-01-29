@@ -84,6 +84,15 @@
             controller: 'SourceListController',
             templateUrl: 'views/source/source.list.html',
             isPublic: true
+        });
+
+
+        /* states for the politicians */
+        $stateProvider.state('politicians', {
+            url: '/politic',
+            controller: 'PoliticsListController',
+            templateUrl: 'views/politician/politician.list.html',
+            isPublic: false
         })
     });
 

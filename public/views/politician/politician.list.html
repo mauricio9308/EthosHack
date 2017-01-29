@@ -1,0 +1,24 @@
+<div class="page-header" layout="row">
+    <h3>Políticos</h3>
+    <div flex></div>
+    <md-button ng-click="createPolitician()" ng-if="isUserLoggedIn">Crear</md-button>
+</div>
+<div ng-cloak>
+    <!-- List for the sources in the platform  -->
+    <md-content flex>
+        <md-list class="md-dense" flex ng-show="politics">
+            <md-list-item class="md-2-line" ng-repeat="politic in politics" ng-click="onPoliticianClicked( $event, politic )">
+                <img src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" class="md-avatar" alt="{{result.image_url}}" />
+                <div class="md-list-item-text" layout="column">
+                    <h3>{{ politic.nombre }}</h3>
+                    <h4>Político</h4>
+                </div>
+                <md-button class="md-secondary" ng-click="editPolitician( $event, politic)" ng-if="isUserLoggedIn">
+                    Editar
+                </md-button>
+            </md-list-item>
+
+        </md-list>
+        <h3 ng-show="noData">Sin Resultados</h3>
+    </md-content>
+</div>

@@ -80,9 +80,6 @@
                 if( !data || data.length == 0 ){
                     $scope.noData = true;
                 }
-
-                console.log('data loaded... ');
-                console.log( data );
             });
 
 
