@@ -1,3 +1,6 @@
+##
+## Github's node.gitignore
+##
 # Logs
 logs
 *.log
@@ -52,3 +55,7 @@ jspm_packages
 # dotenv environment variables file
 .env
 
+##
+## Custom
+##
+public/lib
