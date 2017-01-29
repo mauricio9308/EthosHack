@@ -35,7 +35,8 @@
                 <ul>
                     <li ng-repeat="ref in act.refs">
                         <a ng-href="{{ ref.url }}">{{ ref.titulo }}</a>
-                        - Fuente: {{ }}
+                        <br>
+                        <a ng-click="viewSource( $event, ref.fuente )">Ver Fuente</a>
                     </li>
                 </ul>
                 <p ng-if="!act.refs || act.refs.length == 0" style="margin: 0 auto;">

@@ -6,13 +6,15 @@
     angular.module('ethos').controller('SourceListController', SourceListController);
 
     // Inject
-    SourceListController.$inject = ['$scope', '$state', '$mdDialog', '$firebaseArray'];
+    SourceListController.$inject = ['$scope', 'CurrentSessionService', '$mdDialog', '$firebaseArray'];
 
     /**
      * Controller for the detail view of the application
      * */
-    function SourceListController($scope, $state,
+    function SourceListController($scope, CurrentSessionService,
                                  $mdDialog, $firebaseArray) {
+
+        $scope.isUserLoggedIn = CurrentSessionService.isUserLoggedIn();
 
         // Flag for the no data view
         $scope.noData = false;

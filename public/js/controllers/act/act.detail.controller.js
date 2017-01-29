@@ -27,6 +27,23 @@
         };
 
         /**
+         * Opens the source dialog
+         * */
+        $scope.viewSource = function( ev, sourceId ){
+            // Opens the source dialog
+            $mdDialog.show({
+                controller: 'SourceDetailController',
+                templateUrl: 'views/source/source.detail.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true,
+                locals: {
+                    sourceId : sourceId
+                }
+            });
+        };
+
+        /**
          * Cancels the dialog
          * */
         $scope.cancel = function() {
