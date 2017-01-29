@@ -1,0 +1,30 @@
+<!--extends layout-->
+<md-dialog aria-label="Add Reference" style="min-width: 800px;">
+    <form ng-cloak layout="column">
+        <md-toolbar style="background-color: #29B1B0">
+            <div class="md-toolbar-tools">
+                <h2>Fuente de noticias</h2>
+                <span flex></span>
+                <md-button ng-click="cancel()">
+                    Cerrar
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <!-- Create -->
+        <md-dialog-content layout="column" layout-padding style="padding: 20px;">
+            <!-- Container for the title -->
+            <h3>Nombre</h3>
+            <p>{{ source.nombre }}</p>
+
+            <!-- Container for the credibility -->
+            <h3>Credibilidad</h3>
+            <p>{{ source.credibilidad }}</p>
+
+            <!-- Container for the url -->
+            <h3>URL</h3>
+            <a ng-href="{{ ref.url }}" style="color: black;">{{ source.nombre }}</a>
+
+        </md-dialog-content>
+    </form>
+</md-dialog>

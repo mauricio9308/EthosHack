@@ -22,8 +22,8 @@
             </md-toolbar>
             <md-content>
                 <timeline flex style="padding: 10px;" >
-                    <timeline-event ng-repeat="act in corruption_acts" ng-click="onCorruptionActClicked( act.$id )">
-                        <timeline-badge class="info">
+                    <timeline-event ng-repeat="act in corruption_acts" ng-click="onCorruptionActClicked( $event, act.$id )">
+                        <timeline-badge class="info" style="z-index: 0;">
                             <i class="glyphicon glyphicon-check"></i>
                         </timeline-badge>
                         <timeline-panel class="info">
@@ -51,7 +51,7 @@
             </md-toolbar>
 
             <!-- List for the related politicians -->
-            <md-content>
+            <md-content ng-if="politician_related && politician_related.length > 0">
                 <md-list class="md-dense" flex>
                     <md-list-item class="md-2-line" ng-repeat="related in politician_related" ng-click="onRelatedClicked( related )">
                         <img src="http://s3.amazonaws.com/37assets/svn/765-default-avatar.png" class="md-avatar" alt="{{related.image_url}}" />
@@ -62,6 +62,7 @@
                     </md-list-item>
                 </md-list>
             </md-content>
+            <h4 ng-if="politician_related && (politician_related.length == 0) && relatedLoaded">Sin relacionados</h4>
         </div>
 
     </div>

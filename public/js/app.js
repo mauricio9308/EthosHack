@@ -73,6 +73,18 @@
             isPublic: true
         });
 
+        /* states for the sources */
+        $stateProvider.state('source-page', {
+            url: '/source/:sourceId',
+            controller: 'SourceDetailController',
+            templateUrl: 'views/source/source.detail.html',
+            isPublic: true
+        }).state('sources', {
+            url: '/source',
+            controller: 'SourceListController',
+            templateUrl: 'views/source/source.list.html',
+            isPublic: true
+        })
     });
 
     /* configuration method for the app */

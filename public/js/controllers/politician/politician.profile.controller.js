@@ -6,43 +6,31 @@
     angular.module('ethos').controller('PoliticianProfileController', PoliticianProfileController);
 
     // Inject
-    PoliticianProfileController.$inject = ['$scope', '$stateParams', '$firebaseObject', '$firebaseArray', '$state'];
+    PoliticianProfileController.$inject = ['$scope', '$stateParams', '$firebaseObject',
+        '$firebaseArray', '$state', '$mdDialog'];
 
     /**
      * Controller for the home view of the application
      * */
-    function PoliticianProfileController($scope, $stateParams, $firebaseObject, $firebaseArray, $state) {
+    function PoliticianProfileController($scope, $stateParams, $firebaseObject,
+                                         $firebaseArray, $state, $mdDialog) {
+
+        // Reference
+        $scope.relatedLoaded = false;
 
         /**
          * We open a dialog for the information of the corruption act
          * */
-        $scope.onCorruptionActClicked = function (id) {
+        $scope.onCorruptionActClicked = function (ev, id) {
             $mdDialog.show({
                     controller: 'ActDetailController',
                     templateUrl: 'views/act/act.detail.dialog.html',
                     parent: angular.element(document.body),
                     targetEvent: ev,
-                    clickOutsideToClose:true
-                })
-                .then(function( newReference ) {
-                    if( !$scope.act.refs ){
-                        $scope.act.refs = [];
+                    clickOutsideToClose:true,
+                    locals: {
+                        actId : id
                     }
-
-                    // We check if the object is already in the reference
-                    var alreadySet = false;
-                    for(var i = 0; i < $scope.act.refs.length; i++) {
-                        if ($scope.act.refs[i]['$id'] == newReference['$id']) {
-                            alreadySet = true;
-                            break;
-                        }
-                    }
-
-                    if( !alreadySet ){
-                        $scope.act.refs.push( newReference );
-                    }
-                }, function() {
-                    console.log('nothing was selected from the dialog...');
                 });
         };
 
@@ -82,6 +70,9 @@
             // Getting the reference of the involved politicians
             var involvedQuery = firebaseDB.ref('perfil').orderByChild('complices/' + $scope.politicianId).equalTo(true);
             $scope.politician_related = $firebaseArray(involvedQuery);
+            $scope.politician_related.$loaded(function(){
+                $scope.relatedLoaded = true;
+            })
         }
 
         // We call the loading in the main page

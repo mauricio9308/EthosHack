@@ -1,9 +1,9 @@
 <!--extends layout-->
 <div class="page-header">
-    <h3>Curate</h3>
+    <h3>Curar</h3>
 </div>
 <div style="width: 100%; position: relative;">
-    <h2 ng-if="(!corruption_acts || corruption_acts.length == 0) && dataLoaded">Sin Resultados</h2>
+    <h2 ng-if="(!corruption_acts || corruption_acts.length == 0) && dataLoaded">Sin noticias por curar</h2>
 
     <ul rn-carousel
         ng-if="corruption_acts && (corruption_acts.length > 0)"
@@ -41,11 +41,8 @@
                                        style="background: green; color: white">
                                 Si
                             </md-button>
-
                         </div>
-
                     </div>
-
                 </div>
             </md-card>
         </li>

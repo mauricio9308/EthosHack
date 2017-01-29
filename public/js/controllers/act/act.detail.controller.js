@@ -19,6 +19,8 @@
          * Opening the state of the politician
          * */
         $scope.onPoliticianClicked = function( politician ){
+            $mdDialog.cancel();
+
             $state.go('politician-page', {
                 politicianId: politician['$id']
             });
@@ -59,7 +61,8 @@
                     $scope.act.refs  = [];
 
                     for (var reference in data.referencias) {
-                        $scope.act.refs.push( $firebaseObject( firebaseDB.ref('referencia').child( reference ) ));
+                        var refObject = firebaseDB.ref('referencia').child( reference );
+                        $scope.act.refs.push( $firebaseObject( refObject ) );
                     }
                 }
             });
